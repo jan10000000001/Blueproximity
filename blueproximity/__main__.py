@@ -4,7 +4,7 @@ import os.path
 
 from xdg import BaseDirectory
 
-from blueproximity import APP_NAME, config, init_logging
+from blueproximity import APP_NAME, config, init_logging, run_gui
 
 
 def cli():
@@ -26,6 +26,8 @@ def main():
     else:
         config_path = os.path.join(
             BaseDirectory.save_config_path(APP_NAME), 'config.ini')
+    if args.gui:
+        run_gui()
     configuration = config.load(config_path, validate=True)
     # initiate logging
     init_logging(configuration)
